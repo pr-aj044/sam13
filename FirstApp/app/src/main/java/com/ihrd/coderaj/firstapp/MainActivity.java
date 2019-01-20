@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.ihrd.coderaj.firstapp.R.id.res;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         fnum=(EditText)findViewById(R.id.fnum);
         snum=(EditText)findViewById(R.id.snum);
         txtres=(EditText)findViewById(R.id.txtres);
-        b=(Button)findViewById(R.id.res);
+        b=(Button)findViewById(res);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
