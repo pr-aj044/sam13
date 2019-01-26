@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText usrnm,pswd;
     Button login;
-    String getUsr,getPas,getStr1="asdf",getPstr="1234";
+    String getUsr,getPas,getStr1="group10",getPstr="1234";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
