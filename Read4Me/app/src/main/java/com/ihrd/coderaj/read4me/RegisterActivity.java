@@ -8,11 +8,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText fnm,lnm,age,mob,mail,pswd1,cmpswd;
     Button signup;
     Spinner gen;
+    String url="http://192.168.43.41/read4me/signup.php";
     String fname,lname,uage,gender,mobile,email,passwd,cmpasswd;
 
     @Override
@@ -42,8 +54,44 @@ public class RegisterActivity extends AppCompatActivity {
                 cmpasswd=cmpswd.getText().toString();
                 if(passwd.equals(cmpasswd)){
                     //rest of prgrm
-                    Toast.makeText(getApplicationContext(),"signup success",Toast.LENGTH_SHORT).show();
+
+
+                    sendtoserver();
                 }
+            }
+
+            private void sendtoserver() {
+                StringRequest sign=new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        HashMap<String,String> params=new HashMap<>();
+                        params.put("fname",fname);
+                        params.put("lname",lname);
+                        params.put("uage",uage);
+                        params.put("gender",gender);
+                        params.put("mobile",mobile);
+                        params.put("email",email);
+                        params.put("pass",passwd);
+                        return params;
+                    }
+
+
+
+                };
+                RequestQueue reqs=Volley.newRequestQueue(getApplicationContext());
+                reqs.add(sign);
             }
         });
 

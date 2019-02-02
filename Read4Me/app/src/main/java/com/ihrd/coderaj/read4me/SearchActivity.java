@@ -23,7 +23,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getsearch=selem.getText().toString();
-                
+
             }
         });
     }
